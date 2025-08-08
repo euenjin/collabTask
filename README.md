@@ -4,9 +4,11 @@
 CollabTask is a real-time collaboration web app focused on improving teamwork and productivity. It includes user authentication, task management, real-time chat, and a smart scheduler that automatically assigns tasks to free time slots, helping users optimize their weekly plans and schedule meetings efficiently.
 
 ## Technologies Used
-- Backend: FastAPI  
-- Frontend: React  
-- Real-time Communication: WebSocket  
+- Backend: Node.js + Express + MongoDB
+
+- Frontend: React + Vite + Tailwind
+
+- Dev tooling: nodemon, dotenv, curl/Postman
 
 ## Timeline
 Week 1: Setup and requirements gathering    
