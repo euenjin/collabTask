@@ -3,7 +3,7 @@ import Task from '../models/Task.js';
 
 export async function getAllTasks(req, res, next) {
   try {
-    const tasks = await Task.find();
+    const tasks = await Task.find();                        // Fetch all tasks from the database
     res.json(tasks);
   } catch (err) {
     next(err);

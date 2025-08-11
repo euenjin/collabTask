@@ -7,4 +7,4 @@ const taskSchema = new Schema({
 }, { timestamps: true });
 
 // Export as default so `import Task from ...` works
-export default model('Task', taskSchema);
+export default model('Task', taskSchema);              
