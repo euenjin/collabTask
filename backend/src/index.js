@@ -3,9 +3,11 @@ import 'dotenv/config';        // 1) load .env
 import express from 'express';
 import cors from 'cors';
 import errorHandler from './middlewares/errorHandler.js';
-import authRoutes from './routes/authRoutes.js'; // Import auth routes
 import { connectDB } from './config/db.js';
 import taskRoutes from './routes/taskRoutes.js';
+import signinRoutes from './routes/signInRoutes.js';
+import signupRoutes from './routes/signUpRoutes.js';
+
 
 const app = express();
 
@@ -15,11 +17,12 @@ app.use((req,res,next) => {
 });
 
 // 2) middleware
-app.use(cors());
+app.use(cors({origin: process.env.CORS_ORIGIN || 'http://localhost:3000'}));
 app.use(express.json());
 
 // 3) routes
-app.use('/api/auth', authRoutes); 
+app.use('/api/auth', signinRoutes); 
+app.use('/api/auth', signupRoutes); 
 app.use('/api/tasks', taskRoutes);
 
 // 4) error handler

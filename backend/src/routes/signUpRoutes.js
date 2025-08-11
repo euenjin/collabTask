@@ -1,27 +1,23 @@
-// backend/src/routes/authRoutes.js
 import express from 'express';
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
-// JWT Token Generation Function
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 };
 
-// Sign in Route
-router.post('/signin', async (req, res) => {
+router.post('/signup', async (req, res) => {
   const { email, password } = req.body;
-
   try {
-    const user = await User.findOne({ email });
-    if (!user) return res.status(401).json({ message: 'Invalid email or password' });
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return res.status(400).json({ message: 'Email already exists' });
 
-    const isMatch = await user.matchPassword(password);
-    if (!isMatch) return res.status(401).json({ message: 'Invalid email or password' });
+    const user = new User({ email, password });
+    await user.save();
 
-    res.json({
+    res.status(201).json({
       _id: user._id,
       email: user.email,
       token: generateToken(user._id),
