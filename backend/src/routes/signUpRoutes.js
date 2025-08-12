@@ -11,7 +11,7 @@ const generateToken = (id) => {
 };
 
 router.post('/signup', validateTeamDept, async (req, res) => {
-  // normalize email/password server-side too
+  // avoid empty strings and normalize email
   const email = String(req.body?.email ?? '').trim().toLowerCase();
   const password = String(req.body?.password ?? '').trim();
   const { team = 'Solo', department = 'Solo' } = req.body;
