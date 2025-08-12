@@ -25,15 +25,13 @@ app.use('/api/auth', signinRoutes);
 app.use('/api/auth', signupRoutes); 
 app.use('/api/tasks', taskRoutes);
 
-// 4) error handler
-app.use(errorHandler);
 
-// 5) basic health check
+// 4) basic health check
 app.get('/', (req, res) => {
   res.send('API is running');
 });
 
-// 6) start server
+// 5) start server
 const PORT = process.env.PORT || 4000;
 const startServer = async () => {
   await connectDB();  // Connect to MongoDB
@@ -43,3 +41,6 @@ const startServer = async () => {
 };
 
 startServer();
+
+app.use(errorHandler);
+
