@@ -20,7 +20,6 @@ router.post('/signup', validateTeamDept, async (req, res) => {
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: 'Email already exists' });
 
-    // NOTE: assume your User model hashes the password in a pre-save hook.
     const user = new User({ email, password, team, department });
     await user.save();
 
